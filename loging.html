@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>登入/註冊 | 辣魂花開</title>
+  <link rel="stylesheet" href="loging.css" />
+</head>
+<body>
+  <header>
+    <h1>
+      <a href="index.html">辣魂花開 | REBEL ROSE</a>
+    </h1>
+    <div class="right-section">
+      <div class="nav-container">
+        <input type="text" id="searchInput" class="search-bar" placeholder="搜尋商品..." />
+      </div>
+      <nav>
+        <ul>
+        <li><a href="cart.html">購物車</a></li>
+        <li><a href="aboutus.html">關於我們</a></li>
+        <li><a href="loging.html">會員註冊/登入</a></li>
+        <li><a href="member.html">會員資料</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <div class="container" id="form-container">
+    <h2 id="form-title">登入</h2>
+    <form id="login-form">
+      <input type="text" placeholder="帳號" required />
+      <input type="password" placeholder="密碼" required />
+      <button type="submit">登入</button>
+    </form>
+    <form id="register-form" style="display: none;">
+      <input type="text" placeholder="帳號" required />
+      <input type="email" placeholder="電子郵件" required />
+      <input type="password" placeholder="密碼" required />
+      <button type="submit">註冊</button>
+    </form>
+    <div class="toggle">
+      <span id="toggle-msg">還沒有帳號嗎？ <a href="#" onclick="toggleForm()">註冊</a></span>
+    </div>
+  </div>
+
+  <div class="tagline">辣魂不散，風格不斷。</div>
+
+<script>
+  const loginForm = document.getElementById('login-form');
+  const registerForm = document.getElementById('register-form');
+  const formTitle = document.getElementById('form-title');
+  const toggleMsg = document.getElementById('toggle-msg');
+
+  // 表單切換
+  function toggleForm() {
+    if (loginForm.style.display === 'none') {
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+      formTitle.textContent = '登入';
+      toggleMsg.innerHTML = '還沒有帳號嗎？ <a href="#" onclick="toggleForm()">註冊</a>';
+    } else {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+      formTitle.textContent = '註冊';
+      toggleMsg.innerHTML = '已有帳號？ <a href="#" onclick="toggleForm()">登入</a>';
+    }
+  }
+
+  // 處理登入送出 → 跳轉
+  loginForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    window.location.href = 'index.html';
+  });
+
+  // 處理註冊送出 → 跳轉
+  registerForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    window.location.href = 'index.html';
+  });
+</script>
+<footer>
+  &copy; 2025 辣魂花開 LABONBU. All rights reserved.
+</footer>
+<script>
+  const productMap = {
+    "牛仔褲": 3,
+    "豹紋裙": 9,
+    "腋下包": 13,
+    "配件": 14,
+    "套裝": 12,
+  };
+
+  const searchInput = document.getElementById('searchInput');
+
+  function doSearch() {
+    const keyword = searchInput.value.trim();
+    if (keyword === "") {
+      alert("請輸入搜尋關鍵字");
+      return;
+    }
+    if (productMap[keyword]) {
+      window.location.href = `product.html?id=${productMap[keyword]}`;
+    } else {
+      alert("找不到該商品，請換個關鍵字試試");
+    }
+  }
+
+  searchInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      doSearch();
+    }
+  });
+</script>
+</body>
+</html>

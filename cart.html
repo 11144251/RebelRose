@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>購物車 | 辣魂花開</title>
+  <link rel="stylesheet" href="cart.css" />
+  <style>
+  </style>
+</head>
+<body>
+  <header>
+    <h1>
+      <a href="index.html">辣魂花開 | REBEL ROSE</a>
+    </h1>
+    <div class="nav-container">
+      <input type="text" id="searchInput" class="search-bar" placeholder="搜尋商品..." />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="cart.html">購物車</a></li>
+        <li><a href="aboutus.html">關於我們</a></li>
+        <li><a href="loging.html">會員註冊/登入</a></li>
+        <li><a href="member.html">會員資料</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>購物車清單</h1>
+    <div id="cartContainer"></div>
+    <div class="total" id="cartTotal"></div>
+
+    <div class="btn-group">
+      <button class="clear-btn" id="clearCart">清空購物車</button>
+      <button class="checkout-btn" id="checkoutCart">結帳</button>
+    </div>
+
+    <a href="index.html" class="back-btn">← 返回商品總覽</a>
+  </div>
+
+  <script>
+    const cartContainer = document.getElementById("cartContainer");
+    const cartTotal = document.getElementById("cartTotal");
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+      cartContainer.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = "<p style='text-align: center; padding: 2rem;'>購物車是空的，快去選購商品吧！</p>";
+        cartTotal.textContent = "";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        const itemElement = document.createElement("div");
+        itemElement.classList.add("cart-item");
+
+        itemElement.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <div class="item-info">
+            <h2>${item.name}</h2>
+            <p>單價：$${item.price}</p>
+            <div class="quantity-control">
+              <button class="quantity-btn minus" data-index="${index}" ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+              <span class="quantity-display">${item.quantity}</span>
+              <button class="quantity-btn plus" data-index="${index}">+</button>
+            </div>
+            <p>小計：$${subtotal}</p>
+          </div>
+          <button class="remove-btn" data-index="${index}">移除</button>
+        `;
+
+        cartContainer.appendChild(itemElement);
+      });
+
+      cartTotal.textContent = `總金額：$${total}`;
+    }
+
+    renderCart();
+
+    cartContainer.addEventListener("click", e => {
+      if (e.target.classList.contains("remove-btn")) {
+        const index = e.target.dataset.index;
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+      else if (e.target.classList.contains("quantity-btn")) {
+        const index = e.target.dataset.index;
+        const isMinus = e.target.classList.contains("minus");
+        
+        if (isMinus && cart[index].quantity > 1) {
+          cart[index].quantity--;
+        } 
+        else if (!isMinus) {
+          cart[index].quantity++;
+        }
+        
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+    });
+
+    document.getElementById("clearCart").addEventListener("click", () => {
+      if (confirm("確定要清空購物車嗎？")) {
+        localStorage.removeItem("cart");
+        location.reload();
+      }
+    });
+
+    document.getElementById("checkoutCart").addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("購物車是空的，無法結帳！");
+        return;
+      }
+
+      const total = cart.reduce((t, i) => t + i.price * i.quantity, 0);
+      const confirmed = confirm(`總金額為 $${total}，確定要結帳嗎？`);
+
+      if (confirmed) {
+        localStorage.removeItem("cart");
+        alert("感謝您的購買！您的訂單已送出。");
+        window.location.href = "index.html";
+      }
+    });
+  </script>
+    <footer>
+      &copy; 2025 辣魂花開 LABONBU. All rights reserved.
+    </footer>
+
+<script>
+  const productMap = {
+    "牛仔褲": 3,
+    "豹紋裙": 9,
+    "腋下包": 13,
+    "配件": 14,
+    "套裝": 12,
+  };
+
+  const searchInput = document.getElementById('searchInput');
+
+  function doSearch() {
+    const keyword = searchInput.value.trim();
+    if (keyword === "") {
+      alert("請輸入搜尋關鍵字");
+      return;
+    }
+    if (productMap[keyword]) {
+      window.location.href = `product.html?id=${productMap[keyword]}`;
+    } else {
+      alert("找不到該商品，請換個關鍵字試試");
+    }
+  }
+
+  searchInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      doSearch();
+    }
+  });
+</script>
+
+</body>
+</html>

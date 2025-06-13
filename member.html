@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>會員資料 | 辣魂花開</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Serif TC', serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #C0C0C0;
+      overflow-x: hidden;
+      padding-top: 100px;
+    }
+    
+
+    header {
+      background: linear-gradient(to right, #121212, #1a1a1a);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #2C2C2C;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1001;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #EC368D;
+      letter-spacing: 2px;
+    }
+
+    header h1 a {
+      color: #EC368D;
+      text-decoration: none;
+    }
+
+    header h1 a:hover {
+      color: #2C2C2C; 
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #C0C0C0;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #EC368D;
+    }
+
+    nav a.active {
+      color: #EC368D;
+      border-bottom: 2px solid #EC368D;
+      padding-bottom: 2px;
+    }
+
+    .search-bar {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+    .profile-container {
+  background: rgba(26, 26, 26, 0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px hotpink;
+  width: 100%;
+  max-width: 600px;
+  margin: 140px auto 2rem auto; /* ← 修改這行 */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+    h2 {
+      text-align: center;
+      color: hotpink;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-item {
+      margin: 1rem 0;
+    }
+
+    .profile-item label {
+      color: #fba0d4;
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+    }
+
+    .profile-item span {
+      color: white;
+      font-size: 1rem;
+    }
+
+    .edit-btn {
+      margin: 2rem auto 0 auto;
+      padding: 0.75rem 2rem;
+      background: hotpink;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 450px;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .history-section {
+      margin-top: 3rem;
+      background: rgba(26, 26, 26, 0.9);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 0 15px hotpink;
+    }
+
+    .history-section h3 {
+      color: hotpink;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .comment-item, .order-item {
+      background: #222;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      color: #eee;
+      font-size: 0.95rem;
+    }
+
+    .comment-item p, .order-item p {
+      margin: 0.2rem 0;
+    }
+
+    .date {
+      font-size: 0.8rem;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    .more-btn {
+      display: block;
+      width: 120px;
+      margin: 1rem auto 0 auto;
+      padding: 0.5rem 0;
+      background: hotpink;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .more-btn:hover {
+      background: #ff6fcf;
+    }
+
+    .decorative-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(hotpink 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.05;
+    }
+
+    .tagline {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      color: #fba0d4;
+      text-align: center;
+      font-style: italic;
+    }
+
+    footer {
+  background-color: #111;
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-size: 14px;
+  border-top: 1px solid #2C2C2C;
+  margin-top: 40px;
+  border-radius: 8px;
+}
+  </style>
+</head>
+<body>
+  <div class="decorative-bg"></div>
+
+  <header>
+    <h1><a href="index.html">辣魂花開 | REBEL ROSE</a></h1>
+
+<div class="nav-container">
+  <input type="text" id="searchInput" class="search-bar" placeholder="搜尋商品..." />
+</div>
+
+    <nav>
+      <ul>
+        <li><a href="cart.html">購物車</a></li>
+        <li><a href="aboutus.html">關於我們</a></li>
+        <li><a href="loging.html">會員註冊/登入</a></li>
+        <li><a href="member.html">會員資料</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="profile-container">
+    <h2>會員資料</h2>
+    <div class="profile-item">
+      <label>帳號</label>
+      <span>rebellious.girl88</span>
+    </div>
+    <div class="profile-item">
+      <label>電子郵件</label>
+      <span>rebel88@example.com</span>
+    </div>
+    <div class="profile-item">
+      <label>會員等級</label>
+      <span>玫瑰 VIP</span>
+    </div>
+    <div class="profile-item">
+      <label>加入日期</label>
+      <span>2024-12-01</span>
+    </div>
+    <a href="edit.html" class="edit-btn">編輯會員資料</a>
+
+    <div class="history-section">
+      <h3>歷史評論紀錄</h3>
+      <div class="comment-item">
+        <p><strong>商品：</strong>玫瑰性感連衣裙</p>
+        <p>「質感超棒！穿起來超有自信」</p>
+        <p class="date">評論日期：2025-05-10</p>
+      </div>
+      <div class="comment-item">
+        <p><strong>商品：</strong>黑色皮革短褲</p>
+        <p>「設計獨特，朋友都稱讚！」</p>
+        <p class="date">評論日期：2025-04-28</p>
+      </div>
+      <button class="more-btn" onclick="location.href='comments.html'">查看更多</button>
+    </div>
+
+    <div class="history-section">
+      <h3>歷史完成訂單紀錄</h3>
+      <div class="order-item">
+        <p><strong>訂單編號：</strong>#20230501</p>
+        <p><strong>商品：</strong>玫瑰性感連衣裙 x1</p>
+        <p><strong>金額：</strong>NT$1,280</p>
+        <p class="date">完成日期：2025-05-05</p>
+      </div>
+      <div class="order-item">
+        <p><strong>訂單編號：</strong>#20230415</p>
+        <p><strong>商品：</strong>黑色皮革短褲 x2</p>
+        <p><strong>金額：</strong>NT$1,560</p>
+        <p class="date">完成日期：2025-04-20</p>
+      </div>
+      <button class="more-btn" onclick="location.href='orders.html'">查看更多</button>
+    </div>
+  </div>
+      <footer>
+      &copy; 2025 辣魂花開 LABONBU. All rights reserved.
+    </footer>
+
+<script>
+  const productMap = {
+    "牛仔褲": 3,
+    "豹紋裙": 9,
+    "腋下包": 13,
+    "配件": 14,
+    "套裝": 12,
+  };
+
+  const searchInput = document.getElementById('searchInput');
+
+  function doSearch() {
+    const keyword = searchInput.value.trim();
+    if (keyword === "") {
+      alert("請輸入搜尋關鍵字");
+      return;
+    }
+    if (productMap[keyword]) {
+      window.location.href = `product.html?id=${productMap[keyword]}`;
+    } else {
+      alert("找不到該商品，請換個關鍵字試試");
+    }
+  }
+
+  searchInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      doSearch();
+    }
+  });
+</script>
+
+</body>
+</html>

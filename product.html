@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>商品介紹 | 辣魂花開</title>
+    <link rel="stylesheet" href="product.css" />
+</head>
+<body>
+  <header>
+    <h1>
+      <a href="index.html">辣魂花開 | REBEL ROSE</a>
+    </h1>
+    <div class="nav-container">
+      <input type="text" id="searchInput" class="search-bar" placeholder="搜尋商品..." />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="cart.html">購物車</a></li>
+        <li><a href="aboutus.html">關於我們</a></li>
+        <li><a href="loging.html">會員註冊/登入</a></li>
+        <li><a href="member.html">會員資料</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container" id="productContainer"></div>
+
+  <script>
+    const products = [
+       {
+         id: 1,
+         name: "不規則飄帶設計吊帶",
+         image: "image/photo1.jpg",
+         price: 390,
+         description: "採用立體壓紋布料與不規則飄帶剪裁，營造視覺流動感；可搭配破壞短褲或長靴，打造層次感十足的暗黑辣妹造型；屬於亞文化甜酷系必備上衣。"
+       },
+       {
+          id: 2,
+          name: "哥特紅黑拼接格子半身裙",
+          image: "image/photo5.jpg",
+          price: 320,
+          description: "紅黑格紋與層疊剪裁拼接，結合金屬扣飾設計，帶出濃厚哥德氛圍；搭配網襪與皮革上衣最吸睛；定位於街頭叛逆少女風格。"
+        },
+        {
+          id: 3,
+          name: "心機修身牛仔套裝",
+          image: "image/photo2.jpg",
+          price: 680,
+          description: "上身緊身設計勾勒曲線，下身低腰開衩短裙拉長比例；可搭配高筒靴與細項鍊，性感又不失態度；適合夜店風或辣妹系穿搭。"
+        },
+        {
+          id: 4,
+          name: "美式復古高級闊腿褲",
+          image: "image/photo3.jpg",
+          price: 490,
+          description: "高腰低襠剪裁與厚磅牛仔布料結合，呈現濃濃Y2K美式感；推薦搭配短版上衣或皮帶強調腰身；主打中性復古混搭風。"
+        },
+        {
+          id: 5,
+          name: "小眾辣妹印花荷葉邊飄帶裙",
+          image: "image/photo4.jpg",
+          price: 480,
+          description: "碎花與不對稱荷葉剪裁，創造出華麗層次與飄逸感；可搭配同材質吊帶或貼身背心，展現個性與柔美並存；定位為暗黑浪漫系辣妹款。"
+        },
+        {
+          id: 6,
+          name: "甜酷風辣妹牛仔套裝",
+          image: "image/photo6.jpg",
+          price: 680,
+          description: "牛仔布拼接與收腰設計結合，打造辣感與造型兼具的穿搭；配上墨鏡與銀飾更具氛圍；是派對穿搭或街拍首選款。"
+        },
+        {
+          id: 7,
+          name: "無袖修身蝴蝶印花上衣",
+          image: "image/photo7.jpg",
+          price: 380,
+          description: "緊身版型搭配前衛蝴蝶圖騰，細節處突顯青春與張力；建議配短裙與厚底鞋，營造復古Y2K氛圍；定位為潮流甜辣必備單品。"
+        },
+        {
+          id: 8,
+          name: "法式女孩經典蕾絲花邊修身上衣",
+          image: "image/photo8.jpg",
+          price: 380,
+          description: "細緻蕾絲與貼身剪裁結合，展現優雅與性感；搭配高腰長裙或牛仔褲皆適合；屬於法式街頭浪漫風。"
+        },
+        {
+          id: 9,
+          name: "亞文化豹紋半身裙",
+          image: "image/photo9.jpg",
+          price: 350,
+          description: "大膽豹紋與微開衩設計，散發野性與不羈氣息；搭配皮革外套與長靴強化叛逆感；屬於叛逆辣妹派對穿搭。"
+        },
+        {
+          id: 10,
+          name: "朋克風開衫牛仔短裙套裝",
+          image: "image/photo10.jpg",
+          price: 680,
+          description: "破壞感剪裁與金屬元素設計，營造濃厚朋克精神；建議配厚底軍靴與黑墨鏡；風格定位為次文化朋克辣妹。"
+        },
+        {
+          id: 11,
+          name: "復古做舊字母上衣",
+          image: "image/photo12.jpg",
+          price: 320,
+          description: "字母印刷加上仿舊做工，簡單中帶有舊時光感；配牛仔褲或吊帶裙皆可；屬於街頭日常復古系。"
+        },
+        {
+          id: 12,
+          name: "輕薄春夏灰色套裝",
+          image: "image/photo13.jpg",
+          price: 680,
+          description: "親膚輕盈面料與簡約廓形設計，透氣又具高級感；推薦搭配涼鞋與銀飾；主打極簡知性中性風格。"
+        },
+        {
+          id: 13,
+          name: "復古感豹紋腋下包",
+          image: "image/photo20.jpg",
+          price: 360,
+          description: "短柄腋下設計搭配豹紋元素，復古辣妹標誌單品；配任何黑色系服裝都超吸睛；風格定位：Y2K或甜辣系配件首選。"
+        },
+        {
+          id: 14,
+          name: "未來感銀色太陽眼鏡",
+          image: "image/photo19.jpg",
+          price: 250,
+          description: "鏡面金屬質感結合流線外型，瞬間提升造型未來感；搭配全黑或銀灰穿搭最有氛圍；屬於未來派潮流標配。"
+        },
+        {
+          id: 15,
+          name: "高級感無框方形墨鏡",
+          image: "image/photo16.jpg",
+          price: 250,
+          description: "無框設計與俐落線條呈現冷調氣質；建議配合西裝外套或簡約風穿搭；風格為極簡高冷系時尚。"
+        }
+
+    ];
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = parseInt(urlParams.get("id"));
+    const product = products.find(p => p.id === productId);
+    const container = document.getElementById("productContainer");
+
+    if (product) {
+      container.innerHTML = `
+        <div class="product-image">
+          <img src="${product.image}" alt="${product.name}" />
+        </div>
+        <div class="product-info">
+          <h1>${product.name}</h1>
+          <p class="price">$${product.price}</p>
+          <p>${product.description}</p>
+
+          <div class="quantity-controller">
+            <button id="decreaseBtn">-</button>
+            <span id="quantityDisplay">1</span>
+            <button id="increaseBtn">+</button>
+          </div>
+
+          <button class="add-to-cart-btn">加入購物車</button>
+          <a href="allproduct.html" class="back-btn">← 返回商品總覽</a>
+
+          <div class="review-section">
+            <h2>評分與評論</h2>
+            <div id="starRating" class="stars"></div>
+            <div class="review-input">
+              <textarea id="reviewText" placeholder="留下你的評論..."></textarea>
+              <button class="submit-review add-to-cart-btn">提交</button>
+            </div>
+            <div class="review-list" id="reviewList"></div>
+          </div>
+        </div>
+      `;
+      let quantity = 1;
+      const quantityDisplay = document.getElementById("quantityDisplay");
+      document.getElementById("increaseBtn").addEventListener("click", () => {
+        quantity++;
+        quantityDisplay.textContent = quantity;
+      });
+      document.getElementById("decreaseBtn").addEventListener("click", () => {
+        if (quantity > 1) {
+          quantity--;
+          quantityDisplay.textContent = quantity;
+        }
+      });
+
+      document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) {
+          existing.quantity += quantity;
+        } else {
+          cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: quantity
+          });
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("已加入購物車！");
+      });
+
+      let selectedRating = 0;
+      const starRatingEl = document.getElementById("starRating");
+
+      function renderStars() {
+        starRatingEl.innerHTML = "";
+        for (let i = 1; i <= 5; i++) {
+          const star = document.createElement("span");
+          star.textContent = i <= selectedRating ? "★" : "☆";
+          star.addEventListener("click", () => {
+            selectedRating = i;
+            renderStars();
+          });
+          starRatingEl.appendChild(star);
+        }
+      }
+
+      renderStars();
+
+      document.querySelector(".submit-review").addEventListener("click", () => {
+        const text = document.getElementById("reviewText").value.trim();
+        if (selectedRating === 0 || text === "") {
+          alert("請輸入評論並選擇星數！");
+          return;
+        }
+        const reviews = JSON.parse(localStorage.getItem("reviews_" + productId)) || [];
+        reviews.push({ rating: selectedRating, text });
+        localStorage.setItem("reviews_" + productId, JSON.stringify(reviews));
+        document.getElementById("reviewText").value = "";
+        selectedRating = 0;
+        renderStars();
+        renderReviews();
+      });
+
+      function renderReviews() {
+        const reviews = JSON.parse(localStorage.getItem("reviews_" + productId)) || [];
+        const reviewList = document.getElementById("reviewList");
+        reviewList.innerHTML = reviews.map(r => `
+          <div class="review-item">
+            <div class="stars">${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}</div>
+            <p>${r.text}</p>
+          </div>
+        `).join("");
+      }
+
+      renderReviews();
+    } else {
+      container.innerHTML = "<p>找不到該商品資料。</p>";
+    }
+  </script>
+    <footer>
+      &copy; 2025 辣魂花開 LABONBU. All rights reserved.
+    </footer>
+
+ <script>
+  const productMap = {
+    "牛仔褲": 3,
+    "豹紋裙": 9,
+    "腋下包": 13,
+    "配件": 14,
+    "套裝": 12,
+  };
+
+  const searchInput = document.getElementById('searchInput');
+
+  function doSearch() {
+    const keyword = searchInput.value.trim();
+    if (keyword === "") {
+      alert("請輸入搜尋關鍵字");
+      return;
+    }
+    if (productMap[keyword]) {
+      window.location.href = `product.html?id=${productMap[keyword]}`;
+    } else {
+      alert("找不到該商品，請換個關鍵字試試");
+    }
+  }
+
+  searchInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      doSearch();
+    }
+  });
+</script>
+
+</body>
+</html>

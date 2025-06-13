@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>辣魂花開 | REBEL ROSE</title>
+  <link rel="stylesheet" href="allproduct.css" />
+</head>
+<body>
+  <header>
+    <h1>
+      <a href="index.html">辣魂花開 | REBEL ROSE</a>
+    </h1>
+    <div class="nav-container">
+      <input type="text" id="searchInput" class="search-bar" placeholder="搜尋商品..." />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="cart.html">購物車</a></li>
+        <li><a href="aboutus.html">關於我們</a></li>
+        <li><a href="loging.html">會員註冊/登入</a></li>
+        <li><a href="member.html">會員資料</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="sidebar">
+    <ul>
+      <li><a href="#">全部風格</a></li>
+      <li><a href="#">上衣</a></li>
+      <li><a href="#">下身</a></li>
+      <li><a href="#">連衣裙/褲</a></li>
+      <li><a href="#">配件</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+
+  <script>
+    const products = [
+      { id: 1, name: "不規則飄帶設計吊帶", image: "image/photo1.jpg", price: 390, sidebar: "上衣" },
+      { id: 2, name: "哥特紅黑拼接格子半身裙", image: "image/photo5.jpg", price: 320, sidebar: "下身" },
+      { id: 3, name: "心機修身牛仔套裝", image: "image/photo2.jpg", price: 680, sidebar: "連衣裙/褲" },
+      { id: 4, name: "美式復古高級闊腿褲", image: "image/photo3.jpg", price: 490, sidebar: "下身" },
+      { id: 5, name: "小眾辣妹印花荷葉邊飄帶裙", image: "image/photo4.jpg", price: 480, sidebar: "下身" },
+      { id: 6, name: "甜酷風辣妹牛仔套裝", image: "image/photo6.jpg", price: 680, sidebar: "連衣裙/褲" },
+      { id: 7, name: "無袖修身蝴蝶印花上衣", image: "image/photo7.jpg", price: 380, sidebar: "上衣" },
+      { id: 8, name: "法式女孩經典蕾絲花邊修身上衣", image: "image/photo8.jpg", price: 380, sidebar: "上衣" },
+      { id: 9, name: "亞文化豹紋半身裙", image: "image/photo9.jpg", price: 350, sidebar: "下身" },
+      { id: 10, name: "朋克風開衫牛仔短裙套裝", image: "image/photo10.jpg", price: 680, sidebar: "連衣裙/褲" },
+      { id: 11, name: "復古做舊字母上衣", image: "image/photo12.jpg", price: 320, sidebar: "上衣" },
+      { id: 12, name: "輕薄春夏灰色套裝", image: "image/photo13.jpg", price: 680, sidebar: "連衣裙/褲" },
+      { id: 13, name: "復古感豹紋腋下包", image: "image/photo20.jpg", price: 360, sidebar: "配件" },
+      { id: 14, name: "未來感銀色太陽眼鏡", image: "image/photo19.jpg", price: 250, sidebar: "配件" },
+      { id: 15, name: "高級感無框方形墨鏡", image: "image/photo16.jpg", price: 250, sidebar: "配件" },
+    ];
+
+    const grid = document.getElementById("productGrid");
+    const categoryLinks = document.querySelectorAll(".sidebar a");
+
+    function renderProducts(filterCategory = "全部風格") {
+      grid.innerHTML = "";
+      const filtered = filterCategory === "全部風格"
+        ? products
+        : products.filter(p => p.sidebar === filterCategory);
+
+      filtered.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>$${product.price}</p>
+        `;
+        card.onclick = () => {
+          window.location.href = `product.html?id=${product.id}`;
+        };
+        grid.appendChild(card);
+      });
+    }
+
+    categoryLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        categoryLinks.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
+
+        const selectedCategory = link.textContent.trim();
+        renderProducts(selectedCategory);
+      });
+    });
+
+    renderProducts();
+
+    // 新增：從 URL 取得分類參數
+function getCategoryFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("category") || "全部風格";
+}
+
+// 修改：初次渲染時根據 URL 決定分類
+const defaultCategory = getCategoryFromURL();
+renderProducts(defaultCategory);
+
+// 同步 sidebar active 樣式
+categoryLinks.forEach(link => {
+  if (link.textContent.trim() === defaultCategory) {
+    link.classList.add("active");
+  }
+});
+
+  </script>
+  <footer>
+    &copy; 2025 辣魂花開 LABONBU. All rights reserved.
+  </footer>  
+
+ <script>
+  const productMap = {
+    "牛仔褲": 3,
+    "豹紋裙": 9,
+    "腋下包": 13,
+    "配件": 14,
+    "套裝": 12,
+  };
+
+  const searchInput = document.getElementById('searchInput');
+
+  function doSearch() {
+    const keyword = searchInput.value.trim();
+    if (keyword === "") {
+      alert("請輸入搜尋關鍵字");
+      return;
+    }
+    if (productMap[keyword]) {
+      window.location.href = `product.html?id=${productMap[keyword]}`;
+    } else {
+      alert("找不到該商品，請換個關鍵字試試");
+    }
+  }
+
+  searchInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      doSearch();
+    }
+  });
+</script>
+
+
+</body>
+</html>
