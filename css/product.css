@@ -1,0 +1,257 @@
+/* Universal Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Serif TC', serif;
+}
+
+/* Body Styles */
+body {
+  background-color: #121212;
+  color: #C0C0C0;
+  background: linear-gradient(to bottom right, #111, #33001a);
+}
+
+/* Header Styles */
+header {
+  background: linear-gradient(to right, #121212, #1a1a1a);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #2C2C2C;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1001;
+  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.3);
+}
+
+header h1 {
+  font-size: 28px;
+  color: #EC368D;
+  letter-spacing: 2px;
+}
+
+header h1 a {
+  color: #EC368D;
+  text-decoration: none;
+}
+
+header h1 a:hover {
+  color: #2C2C2C;
+}
+
+/* Navigation Styles */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: #C0C0C0;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #EC368D;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+.search-bar {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}
+
+
+/* Main Content Styles */
+.main-content {
+  /* 增加 padding-top 以避開 header */
+  padding-top: 90px; /* 這裡的值可以根據 header 的實際高度和你想留的空間調整 */
+  /* 增加 margin-left 以避開 sidebar */
+  margin-left: 240px; /* 這裡的值可以根據 sidebar 的實際寬度和你想留的空間調整 */
+  padding-right: 20px; /* 保留右側 padding */
+  padding-bottom: 40px; /* 保留底部 padding */
+}
+
+/* Product Specific Styles (from File One) */
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+  flex-wrap: wrap;
+}
+
+.product-image {
+  flex: 1 1 300px;
+}
+
+.product-image img {
+  width: 350px;
+  height: 525px;
+  object-fit: contain;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+}
+
+.product-info {
+  flex: 2 1 400px;
+}
+
+.product-info h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #fba0d4;
+}
+
+.product-info p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.product-info .price {
+  font-size: 1.3rem;
+  color: #ff82b2;
+  font-weight: bold;
+}
+
+.back-btn, .add-to-cart-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  background: hotpink;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 0 5px hotpink;
+  transition: background 0.3s;
+}
+
+.back-btn:hover, .add-to-cart-btn:hover {
+  background: #ff3399;
+}
+
+.quantity-controller {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.quantity-controller button {
+  background: hotpink;
+  border: none;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 5px hotpink;
+  transition: background 0.3s;
+}
+
+.quantity-controller button:hover {
+  background: #ff3399;
+}
+
+.quantity-controller span {
+  font-size: 1.2rem;
+  width: 2rem;
+  text-align: center;
+}
+
+/* Review Section Styles (from File One) */
+.review-section {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.review-section h2 {
+  color: #fba0d4;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.stars {
+  color: gold;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.review-input {
+  margin-top: 1rem;
+}
+
+.review-input textarea {
+  width: 100%;
+  height: 80px;
+  border-radius: 8px;
+  padding: 0.5rem;
+  resize: none;
+  font-size: 1rem;
+  border: none;
+}
+
+.submit-review {
+  margin-top: 0.5rem;
+  background: #ff69b4;
+}
+
+.submit-review:hover {
+  background: #ff3399;
+}
+
+.review-list {
+  margin-top: 1rem;
+}
+
+.review-item {
+  border-top: 1px solid #ff69b430;
+  padding: 0.5rem 0;
+}
+
+.review-item .stars {
+  font-size: 1rem;
+}
+
+.container {
+  /* ... (保留原有 .container 的樣式) ... */
+  margin-top: 100px; /* 根據 header 實際高度調整，確保內容不會被遮擋 */
+}
+
+footer {
+  background-color: #111;
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-size: 14px;
+  border-top: 1px solid #2C2C2C;
+  margin-top: 40px;
+  border-radius: 8px;
+}
