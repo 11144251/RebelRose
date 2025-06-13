@@ -131,7 +131,6 @@ nav a:hover {
 }
 /* discount 區塊 */
 .discount {
-  background-image: url('bg1.png')!important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -310,7 +309,7 @@ footer {
   height: 400px;
   overflow: hidden;
 
-  background-image: url('bg1.png');
+  background-image: url('image/bg1.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
