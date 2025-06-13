@@ -111,8 +111,7 @@ nav a:hover {
 }
 
 .sidebar ul li a {
-  color: #121212 !important;           /* 文字顏色改深色且加強優先權 */
-  background-color: #EC368D !important; /* 預設背景桃紅且加強優先權 */
+  color: #C0C0C0;
   text-decoration: none;
   font-size: 16px;
   display: block;
@@ -122,8 +121,8 @@ nav a:hover {
 }
 
 .sidebar ul li a:hover {
-  background-color: #EC368D !important; /* 滑鼠移上去背景維持桃紅 */
-  color: #121212 !important;            /* 滑鼠移上去字色維持深色 */
+  background-color: #EC368D;
+  color: #121212;
 }
 
 .main-content {
