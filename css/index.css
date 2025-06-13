@@ -118,6 +118,7 @@ nav a:hover {
   padding: 8px 12px;
   border-radius: 5px;
   transition: background-color 0.2s ease;
+  background-color: rgba(236, 54, 141, 0.2);
 }
 
 .sidebar ul li a:hover {
